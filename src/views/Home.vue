@@ -1,8 +1,10 @@
 <template>
   <div class="container">
     <InputName v-if='!getName' />
+    <div v-if='getName' style='border-top: 1px solid black;border-bottom: 1px solid black; background-color: aliceblue'>
     <TodoInput v-if='getName'/>
     <TodoList v-if='getName' />
+    </div>
   </div>
 </template>
 

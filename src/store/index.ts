@@ -6,15 +6,18 @@ export default createStore({
     todos: [
       {
         id: 1,
-        title: 'One'
+        title: 'One',
+        iscompleted: false
       },
       {
         id: 2,
-        title: 'Two'
+        title: 'Two',
+        iscompleted: false
       },
       {
         id: 3,
-        title: 'Three'
+        title: 'Three',
+        iscompleted: false
       }
     ]
   },
@@ -36,16 +39,21 @@ export default createStore({
       const index = state.todos.findIndex(t => t.id == todo.id)
       console.log(index)
     },
-    reset_todo(state, todos):void {
+    reset_todo(state):void {
       while (state.todos.length) {
         state.todos.pop();
       }
     },
-
-    add_name(state, name) {
-      state.name = name
-     console.log('state', state)
+    add_name(state, name):void {
+      //to uppercase first letter
+     state.name = name.charAt(0).toUpperCase() + name.slice(1)
     },
+    completed_todo(state, todo): boolean  {
+      if(todo.iscompleted === true){
+        return todo.iscompleted = false
+      }
+     return todo.iscompleted = true
+    }
   },
   actions: {
     addTodo({commit}, todo):void {
@@ -62,6 +70,10 @@ export default createStore({
     },
     resetTodo({commit}, todos){
       commit('reset_todo', todos)
+    },
+    completedTodo({commit}, todo){
+      commit('completed_todo', todo)
+
     }
   },
   modules: {

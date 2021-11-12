@@ -34,7 +34,6 @@ import {mapActions, mapGetters} from 'vuex'
            this.addName(this.name)
        }
      
-
   },
 })
 export default class InputName extends Vue {

@@ -5,6 +5,7 @@
     <div>
     <button @click='editTodoI(todo)' class='btn btn-primary mx-2'>{{editing ? 'Update': 'Edit'}}</button>
     <button @click='deleteTodo(todo.id)' class='btn btn-danger'> Delete </button>
+    <button @click="completedTask(todo)" v-bind:class="[activeClass ? 'btn btn-success mx-2' : 'btn btn-danger mx-2']">{{iscompletedText}}</button>
     </div>
 </div>
 </template>
@@ -20,11 +21,13 @@ import { mapActions } from 'vuex';
   data(){
     return {
       todoText: '',
-      editing: false
+      editing: false,
+      iscompletedText: 'Non fait',
+      activeClass: false,
     }
   },
   methods: {
-    ...mapActions(['deleteTodo', 'editTodo']),
+    ...mapActions(['deleteTodo', 'editTodo', 'completedTodo']),
     todoTextChange(e: any): void {
       this.todoText = e.target.value;
 
@@ -38,6 +41,17 @@ import { mapActions } from 'vuex';
       else{
         todo.title = this.todoText;
       }
+    },
+    completedTask(todo: any):void {
+         if(this.completedTodo(todo)){
+           this.iscompletedText = 'Effectué !'
+           //if activeClass > display success green button
+           this.activeClass = true
+         }
+         else {
+           this.iscompletedText = 'Non effectué !'
+         }
+
     }
   }
 })

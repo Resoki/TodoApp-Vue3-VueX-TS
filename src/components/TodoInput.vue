@@ -1,11 +1,14 @@
 <template>
   <div class="man">
-      <h1>Todo App</h1>
+      <h2>Todo App</h2>
     <div class="row">
-        <p v-if='this.$store.getters.getName'>Welcome {{this.$store.getters.getName}}</p>
-      <input @change="todoTextChange" v-bind:value="todoText" class='col form-control mr-2' type='text' placeholder="Ecrivez votre tache"/>
-      <button @click="addTodoI" class='btn btn-primary'>Ajouter </button>
-      <button @click="resetTodoI" class='btn btn-danger'>Reset</button>
+        <p style='font-weight: bold' v-if='this.$store.getters.getName'>Welcome {{this.$store.getters.getName}}</p>
+      <div style='display: flex; align-items:center'>
+      <input @change="todoTextChange" v-bind:value="todoText" style='width: 200px; text-align:center;float:center' class='col form-control' type='text' placeholder="Ecrivez votre tache"/>
+      <button @click="addTodoI" class='btn btn-primary mx-2'>Ajouter </button>
+      <button @click="resetTodoI" class='btn btn-danger mx-2'>Reset</button>
+    
+      </div>
       </div>
 
   </div>
