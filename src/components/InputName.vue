@@ -1,39 +1,34 @@
 <template>
   <div class="man">
-    <div class="row">
-        <p style='text-align: left'>Merci de renseigner votre nom pour utiliser le todoApp :</p>
-      <input @change='nameTextChange'  class='col form-control mr-2' type='text' placeholder="Votre Nom ?"/>
-      <button @click="addNameI" class='btn btn-primary'>Ajouter </button>
+    <div style="border-top: 1px solid black; border-bottom: 1px solid black; background-color: aliceblue">
+        <div>
+            <p style='text-align: center'>Merci de renseigner votre nom pour utiliser le todoApp :</p>
+            <input @change='nameTextChange'  style='text-align:center' class='form-control mr-2' type='text' placeholder="Votre Nom ?"/>
+            <button @click="addNameI" class='btn btn-primary mt-4 mb-4'>Ajouter </button>
       </div>
-
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions} from 'vuex'
 
 @Options({
     data (){
         return {
             name: ''
-          
         }
     },
-  components: {},
-  props: {
-  },
   methods: {
        ...mapActions(['addName']),
 
-       nameTextChange(e: any){
-           this.name = e.target.value
-
+       nameTextChange(e: any): string {
+           return this.name = e.target.value
        },
-       addNameI(): void{
-           this.addName(this.name)
+       addNameI(): string {
+           return this.addName(this.name)
        }
-     
   },
 })
 export default class InputName extends Vue {

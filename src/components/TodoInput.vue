@@ -1,16 +1,13 @@
 <template>
   <div class="man">
-      <h2>Todo App</h2>
+        <h4 style='font-weight: bold' v-if='this.$store.getters.getName'>TodoApp - Bienvenue {{this.$store.getters.getName}}</h4>
     <div class="row">
-        <p style='font-weight: bold' v-if='this.$store.getters.getName'>Welcome {{this.$store.getters.getName}}</p>
       <div style='display: flex; align-items:center'>
-      <input @change="todoTextChange" v-bind:value="todoText" style='width: 200px; text-align:center;float:center' class='col form-control' type='text' placeholder="Ecrivez votre tache"/>
-      <button @click="addTodoI" class='btn btn-primary mx-2'>Ajouter </button>
-      <button @click="resetTodoI" class='btn btn-danger mx-2'>Reset</button>
-    
+        <input @change="todoTextChange" v-bind:value="todoText" style='width: 200px; text-align:center' class='col form-control' type='text' placeholder="Ecrivez votre tache"/>
+        <button @click="addTodoI" class='btn btn-primary mx-2'>Ajouter </button>
+        <button @click="resetTodoI" class='btn btn-danger mx-2'>Reset</button>
       </div>
-      </div>
-
+    </div>
   </div>
 </template>
 
@@ -31,8 +28,8 @@ import { v1 } from 'uuid';
   methods: {
       ...mapActions(["addTodo", 'resetTodo']),
      ...mapGetters(['getName']),
-      todoTextChange(e: any): void {
-          this.todoText = e.target.value;
+      todoTextChange(e: any): string {
+         return this.todoText = e.target.value;
 
       },
       addTodoI():void {
@@ -42,7 +39,7 @@ import { v1 } from 'uuid';
           })
           this.todoText = '';
       },
-      resetTodoI() {
+      resetTodoI():void {
           this.resetTodo()
       }
   }
@@ -59,7 +56,3 @@ h1 {
 }
 
 </style>
-
-function mapActions(arg0: string[]): any {
-  throw new Error('Function not implemented.');
-}

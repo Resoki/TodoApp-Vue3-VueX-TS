@@ -3,9 +3,9 @@
     <h3 v-if='!editing'>{{ todo.title }}</h3>
     <input v-bind:value='todoText' @change='todoTextChange' v-else type='text' class='colr form-control'/>
     <div>
-    <button @click='editTodoI(todo)' class='btn btn-primary mx-2'>{{editing ? 'Update': 'Edit'}}</button>
-    <button @click='deleteTodo(todo.id)' class='btn btn-danger'> Delete </button>
-    <button @click="completedTask(todo)" v-bind:class="[activeClass ? 'btn btn-success mx-2' : 'btn btn-danger mx-2']">{{iscompletedText}}</button>
+      <button @click='editTodoI(todo)' class='btn btn-primary mx-2'>{{editing ? 'Update': 'Edit'}}</button>
+      <button @click='deleteTodo(todo.id)' class='btn btn-danger'> Delete </button>
+      <button @click="completedTask(todo)" v-bind:class="[activeClass ? 'btn btn-success mx-2' : 'btn btn-danger mx-2']">{{iscompletedText}}</button>
     </div>
 </div>
 </template>
@@ -28,9 +28,8 @@ import { mapActions } from 'vuex';
   },
   methods: {
     ...mapActions(['deleteTodo', 'editTodo', 'completedTodo']),
-    todoTextChange(e: any): void {
-      this.todoText = e.target.value;
-
+    todoTextChange(e: any):string {
+      return this.todoText = e.target.value;
     },
     editTodoI(todo: any): void {
       this.editing = this.editing == true ? false : true;
@@ -42,16 +41,15 @@ import { mapActions } from 'vuex';
         todo.title = this.todoText;
       }
     },
-    completedTask(todo: any):void {
+    completedTask(todo: any):string  {
          if(this.completedTodo(todo)){
-           this.iscompletedText = 'Effectué !'
-           //if activeClass > display success green button
            this.activeClass = true
+           //if activeClass > display success green button
+           return this.iscompletedText = 'Effectué !'
          }
          else {
-           this.iscompletedText = 'Non effectué !'
+           return this.iscompletedText = 'Non effectué !'
          }
-
     }
   }
 })

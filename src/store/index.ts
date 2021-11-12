@@ -24,12 +24,13 @@ export default createStore({
   getters: {
     allTodos : (state) => state.todos,
     getName : (state) => state.name,
+    countTodo : (state) => state.todos.length,
   },
   mutations: {
     add_todo(state, todo):void {
       //si le title du todo est vide je return une alert, sinon je push
-      if(todo.title.length === 0 ) alert('le todo ne peux pas être vide')
-      if(!state.name) alert('vous devez déjà renseignez votre nom')
+      if(todo.title.length === 0 ) return alert('Le todo ne peux pas être vide !')
+      if(!state.name) alert('Vous devez déjà renseignez votre nom !')
       else state.todos.push(todo)
     },
     delete_todo(state, id):void {
@@ -53,7 +54,7 @@ export default createStore({
         return todo.iscompleted = false
       }
      return todo.iscompleted = true
-    }
+    },
   },
   actions: {
     addTodo({commit}, todo):void {
@@ -74,7 +75,7 @@ export default createStore({
     completedTodo({commit}, todo){
       commit('completed_todo', todo)
 
-    }
+    },
   },
   modules: {
   }
