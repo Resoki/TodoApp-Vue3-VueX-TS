@@ -1,5 +1,7 @@
 # TodoApp with Vue3 - VueX - TypeScript
 
+Basic TodoApp: You can Add/Remove/Edit Tasks
+
 ## Installing
 ```bash
 npm install
